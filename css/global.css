@@ -1,3 +1,13 @@
 body
 {
+	padding:0px;
+	margin:0px;
+}
+body, body *
+{
+	position:relative;
+}
+.center
+{
+	margin:0px auto;
 }
