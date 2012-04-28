@@ -54,11 +54,22 @@ $(function()
 
 	context=canvas.getContext('2d');
 
-	context.shadowOffsetX=5;
-	context.shadowOffsetY=5;
-	context.shadowBlur=5;
-	context.shadowColor='rgba(0, 0, 0, .5)';
-	context.lineWidth=2;
+//	context.shadowOffsetX=5;
+//	context.shadowOffsetY=5;
+//	context.shadowBlur=5;
+//	context.shadowColor='rgba(0, 0, 0, .5)';
+//	context.lineWidth=2;
+
+	var s=new SalMath(canvas);
+	/*s.cubicBezier(
+		{x:100, y:100}, 
+		{x:150, y:0},
+		{x:300, y:400},
+		{x:400, y:100}, 15, 1000);*/
+	s.squareBezier(
+		{x:100, y:100}, 
+		{x:350, y:400},
+		{x:400, y:100}, 5, 1000);
 
 //	context.beginPath();
 //	context.moveTo(100, 300);
@@ -68,14 +79,13 @@ $(function()
 //	context.closePath();
 //	context.stroke();
 
-	context.rotate(0.25*Math.PI);
-	context.translate(400, 1000);
-	moveBrush({x:0, y:0}, {x:400, y:0}, 
-		function(x)
-		{
-			return 0.05*x*x-10*x-800;
-		}, 2000).start();
-	//moveBrush({x:100, y:50}, {x:300, y:600}, 1000).start();
+//	context.rotate(0.25*Math.PI);
+//	context.translate(400, 1000);
+//	moveBrush({x:0, y:0}, {x:400, y:0}, 
+//		function(x)
+//		{
+//			return 0.05*x*x-10*x-800;
+//		}, 2000).start();
 
 	/*canvas.onclick=function(e)
 	{
