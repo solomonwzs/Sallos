@@ -5,7 +5,7 @@ SalMath=function(canvas)
 }
 
 SalMath.prototype={
-	cubicBezier:function(p0, p1, p2, p3, r, duration){
+	cubicBezier:function(p0, p1, p2, p3, func, duration, td){
 		var cx=3*(p1.x-p0.x);
 		var bx=3*(p2.x-p1.x);
 		var ax=p3.x-p0.x-cx-bx;
@@ -20,22 +20,24 @@ SalMath.prototype={
 			function(){
 				for (var i=0; i<=d; i++){
 					var t=i/d;
-					var R=5+(r-5)*(d-i)/d;
+					var r=func(t);
 					var tSquared=t*t;
 					var tCubed=tSquared*t;
 					var x=(ax*tCubed)+(bx*tSquared)+(cx*t)+p0.x;
 					var y=(ay*tCubed)+(by*tSquared)+(cy*t)+p0.y;
 					this.context.beginPath();
-					this.context.arc(x, y, R, 0, 2*Math.PI);
+					this.context.arc(x, y, r, 0, 2*Math.PI);
 					this.context.closePath();
 					this.context.fill();
 					//console.log(t+' x:'+x+' y:'+y);
-					$await(Jscex.Async.sleep(duration/100));
+					if (i%td==0){
+						$await(Jscex.Async.sleep(duration/100));
+					}
 				}
 			}));
 		draw().start();
 	},
-	squareBezier:function(p0, p1, p2, r, duration){
+	squareBezier:function(p0, p1, p2, func, duration, td){
 		var ax=p2.x-2*p1.x+p0.x;
 		var bx=2*(p1.x-p0.x);
 
@@ -48,6 +50,7 @@ SalMath.prototype={
 			function(){
 				for (var i=0; i<=d; i++){
 					var t=i/d;
+					var r=func(t);
 					var tSquared=t*t;
 					var x=(ax*tSquared)+(bx*t)+p0.x;
 					var y=(ay*tSquared)+(by*t)+p0.y;
@@ -56,7 +59,9 @@ SalMath.prototype={
 					this.context.closePath();
 					this.context.fill();
 					//console.log(t+' x:'+x+' y:'+y);
-					$await(Jscex.Async.sleep(duration/100));
+					if (i%td==0){
+						$await(Jscex.Async.sleep(duration/100));
+					}
 				}
 			}));
 		draw().start();

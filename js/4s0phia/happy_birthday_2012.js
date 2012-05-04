@@ -61,15 +61,15 @@ $(function()
 //	context.lineWidth=2;
 
 	var s=new SalMath(canvas);
-	/*s.cubicBezier(
+	s.cubicBezier(
 		{x:100, y:100}, 
 		{x:150, y:0},
 		{x:300, y:400},
-		{x:400, y:100}, 15, 1000);*/
+		{x:400, y:100}, 5, 1000, 2);
 	s.squareBezier(
 		{x:100, y:100}, 
 		{x:350, y:400},
-		{x:400, y:100}, 5, 1000);
+		{x:400, y:100}, 5, 1000, 2);
 
 //	context.beginPath();
 //	context.moveTo(100, 300);
